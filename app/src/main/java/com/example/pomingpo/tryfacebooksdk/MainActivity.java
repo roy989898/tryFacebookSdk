@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                             .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
                             .build();
 
-                    shareDialog.show(linkContent);
+                    shareDialog.show(linkContent, ShareDialog.Mode.WEB);
                 }
 
             }
