@@ -19,6 +19,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 
 import java.security.MessageDigest;
@@ -26,9 +27,11 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
     private Button btShare;
+    private ShareButton brBShare;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
     private final String TAG = "MyFacebook tag";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         btShare = (Button) findViewById(R.id.bt_share);
+
+
         btShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +80,36 @@ public class MainActivity extends AppCompatActivity {
                     shareDialog.show(linkContent, ShareDialog.Mode.WEB);
                 }
 
+            }
+        });
+
+
+//        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`
+
+        brBShare = (ShareButton) findViewById(R.id.br_b_share);
+
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setContentTitle("Hello Facebook")
+                .setContentDescription(
+                        "The 'Hello Facebook' sample  showcases simple Facebook integration")
+                .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
+                .build();
+        brBShare.setShareContent(linkContent);
+        brBShare.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+                Log.d(TAG, "onSuccess");
+
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "onCancel");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, "error");
             }
         });
 

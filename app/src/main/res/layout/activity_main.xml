@@ -12,5 +12,11 @@
         android:layout_height="wrap_content"
         android:text="share" />
 
+    <com.facebook.share.widget.ShareButton
+        android:id="@+id/br_b_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send" />
+
 
 </LinearLayout>
